@@ -1,9 +1,14 @@
 pipeline {
 agent any
 stages {
-stage("Compile") {
+stage("Package") {
 steps {
 sh "./gradlew compileJava"
+}
+}
+stage("Docker build") {
+steps {
+sh "docker build -t leszko/calculator ."
 }
 }
 }
